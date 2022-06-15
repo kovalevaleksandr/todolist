@@ -1,0 +1,59 @@
+* {
+    font-family: "Times New Roman";
+    outline: none;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.todolist__note {
+    display: flex;
+    margin-bottom: 50px;
+}
+
+.todolist__input {
+    margin-right: 15px;
+}
+
+.todolist__button-add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #444;
+    color: #FFF;
+}
+
+.todolist__button-add:hover {
+    background-color: #455;
+}
+
+.todolist__list {
+    display: flex;
+    flex-direction: column;
+}
+
+.todolist__task-new {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 172px;
+    width: 100%;
+    border: 1px solid #000;
+}
+
+.todolist__item {
+    display: flex;
+    margin-bottom: 2px;
+}
