@@ -21,7 +21,7 @@ function addList() {
 }
 
 function validate(error){
-  const errorText = document.createElement('p')
+  const errorText = document.createElement('p') 
   console.log(errorText)
   errorText.innerHTML=error 
   document.querySelector('.todolist__container').append(errorText)
@@ -40,7 +40,7 @@ function add() {
   edit.classList.add(BTN_CLASS, MATERIAL_CLASS)
   del.classList.add(BTN_CLASS, MATERIAL_CLASS)
 
-  task.setAttribute(ATRIBUTE_ITEM, todolist.length - 1)
+  item.setAttribute(ATRIBUTE_ITEM, todolist.length - 1)
 
   task.append(lastValue)
   edit.innerHTML = 'edit'
@@ -53,13 +53,14 @@ function add() {
 }
 
 function remove(e) {
-  const removedItem = e.target.parentNode.querySelector(TASC_CLASS)
+  const removedItem = e.target.parentNode
+  console.log(removedItem)
   const index = removedItem.getAttribute(ATRIBUTE_ITEM)
-  console.log(e)
+ 
   todolist.splice(index, 1)
 
   removedItem.remove()
-}
+} 
 
 
 
