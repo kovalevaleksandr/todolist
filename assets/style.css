@@ -39,7 +39,7 @@ h6 {
     font-weight: inherit;
 }
 
-.todolist { 
+.todolist {
     margin-top: 15px;
 }
 
@@ -54,7 +54,7 @@ h6 {
     align-items: center;
 }
 
-.todolist__note {
+.todolist__functional-item {
     display: flex;
     margin-bottom: 50px;
 }
@@ -63,7 +63,7 @@ h6 {
     margin-right: 15px;
 }
 
-.todolist__button-add {
+.todolist__button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -73,7 +73,7 @@ h6 {
     color: #FFF;
 }
 
-.todolist__button-add:hover {
+.todolist__button:hover {
     background-color: #455;
 }
 
@@ -111,5 +111,5 @@ h6 {
 }
 
 .state--ready {
-    text-decoration: line-through; 
+    text-decoration: line-through;
 }
