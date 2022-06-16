@@ -1,4 +1,3 @@
-const todolist = []
 const element = document.querySelector('.todolist__button-add')
 const newElems = document.querySelector('.todolist__list')
 const TODO_INPUT = document.querySelector('.todolist__input')
@@ -10,4 +9,4 @@ const MATERIAL_CLASS = 'material-symbols-outlined'
 const TODO_CLASS = '.todolist__input'
 const ATRIBUTE_ITEM = 'todo-index'
 
-export {todolist, element, newElems, TODO_INPUT, del, ITEM_CLASS, TASC_CLASS, BTN_CLASS, MATERIAL_CLASS, TODO_CLASS, ATRIBUTE_ITEM}
+export {element, newElems, TODO_INPUT, del, ITEM_CLASS, TASC_CLASS, BTN_CLASS, MATERIAL_CLASS, TODO_CLASS, ATRIBUTE_ITEM}
