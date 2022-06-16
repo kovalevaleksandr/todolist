@@ -15,7 +15,7 @@ import {
 } from './consts.js'
 
 document.addEventListener("DOMContentLoaded", ()=>{
-    JSON.parse(localStorage.getItem('todolist')).forEach(e=>add(e))
+    JSON.parse(localStorage.getItem('todolist'))?.forEach((e, i)=>add(e, i))
 })
 
 const handler = function () {
@@ -67,9 +67,9 @@ function validate(error) {
     }
 }
 
-function add(e) {
+function add(e, i) {
 
-    const lastIndex = todolist.length - 1
+    const lastIndex = i  ?? todolist.length - 1
     const lastValue = e || todolist[lastIndex]
 
     const item = document.createElement('div')
@@ -92,7 +92,6 @@ function add(e) {
 
     item.setAttribute(ATTRIBUTE_ITEM, lastIndex)
 
-    console.log(lastValue)
 
     task.value = lastValue.title
     edit.innerHTML = 'edit'
@@ -108,11 +107,16 @@ function add(e) {
 function getCompleted(e) {
     const editLocal = e.target
     const item = editLocal.parentNode.querySelector(`.${TASC_CLASS}`)
+const itemParent = editLocal.parentNode
+    const index = itemParent.getAttribute(ATTRIBUTE_ITEM)
+
 
     if (editLocal.checked) {
-        todolist.completed = true
+        todolist[index].completed = true
         item.classList.add('state--ready')
     } else {
+        todolist[index].completed = false
+        console.log(todolist)
         item.classList.remove('state--ready')
     }
 }
