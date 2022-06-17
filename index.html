@@ -14,6 +14,23 @@
 <section class="todolist">
     <div class="todolist__container">
         <div class="todolist__functional">
+
+            <div class="todolist__wrapper">
+                <input class="todolist__search" placeholder="Найдите задачу">
+                <div class="todolist__button button-search">
+                            <span class="material-symbols-outlined">
+                                search
+                            </span>
+                </div>
+            </div>
+
+
+            <div class="todolist__wrapper">
+                <div class="todolist__search-all"></div>
+                <div class="todolist__search-completed"></div>
+                <div class="todolist__search-unfulfilled"></div>
+            </div>
+
             <div class="todolist__functional-item">
                 <input
                         class="todolist__input"
@@ -23,7 +40,7 @@
                         placeholder="Создать задачу"
                         value=""
                 >
-                <div class="todolist__button">
+                <div class="todolist__button button-add">
                             <span class="material-symbols-outlined">
                                 add
                             </span>
@@ -36,6 +53,10 @@
         </div>
     </div>
 </section>
+
 <script src="index.js" type="module"></script>
+<script src="src/classes/Item.js" type="module"></script>
+<script src="src/classes/UI.js" type="module"></script>
+
 </body>
 </html>

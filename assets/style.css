@@ -112,3 +112,7 @@ h6 {
 .state--ready {
     text-decoration: line-through;
 }
+
+.todolist__wrapper{
+    display: flex;
+}
