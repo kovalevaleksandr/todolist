@@ -1,29 +1,17 @@
 import {ATTRIBUTE_ITEM, BTN_CLASS, ITEM_CLASS, LIST, MATERIAL_CLASS, TASK_CLASS} from "../../constants.js";
+import UI from "./UI.js"
 
 export default class Item {
   constructor() {
-    const handler = function () {
-      return {
-        get(target, property) {
-          if (['[object Object]', '[object Array]'].indexOf(Object.prototype.toString.call(target[property])) > -1) {
-            return new Proxy(target[property], handler());
-          }
-          return target[property]
-        },
+    this.store = new UI();
 
-        set(target, property, value) {
-          target[property] = value
-          localStorage.setItem('todolist', JSON.stringify(todolist))
-          return true
-        }
-      }
-    }
-    const todolist = this.todolist = new Proxy(JSON.parse(localStorage.getItem('todolist')) || [], handler())
+    this.todolist = this.store.list
   }
 
-  add(e, i) {
-    const lastIndex = i ?? this.todolist.length - 1
-    const lastValue = e || this.todolist[lastIndex]
+  add(element, index) {
+    const currentIndex = index ?? this.todolist.length - 1
+    // const currentElement = element || this.todolist[currentIndex]
+    const taskTitle = element
 
     const item = document.createElement('div')
     const state = document.createElement('INPUT')
@@ -42,29 +30,28 @@ export default class Item {
 
     edit.addEventListener('click', this.update)
 
-    item.setAttribute(ATTRIBUTE_ITEM, lastIndex.toString())
+    item.setAttribute(ATTRIBUTE_ITEM, currentIndex.toString())
 
-
-    task.value = lastValue.title
+    task.value = taskTitle
     edit.innerHTML = 'edit'
     del.innerHTML = 'delete'
 
     LIST.append(item)
     item.append(state, task, edit, del)
 
-    del.addEventListener('click', (e)=>this.remove(e))
-    state.addEventListener('change', (e)=>this.check(e))
+    del.addEventListener('click', (e) => this.remove(e))
+    state.addEventListener('change', (e) => this.check(e))
+    this.store.addTask(taskTitle)
   }
 
   update(event) {
-
     const currentElement = event.target
     const removedItem = currentElement.parentNode
     const newTask = removedItem.querySelector('.todolist__task-new')
 
     if (currentElement.classList.contains('save')) {
       const index = removedItem.getAttribute(ATTRIBUTE_ITEM)
-      this.todolist[index].title = newTask.value
+      this.store.updateTask(newTask.value, index)
       newTask.setAttribute("readonly", "readonly")
       currentElement.classList.remove('save')
       currentElement.innerHTML = 'edit'
@@ -76,7 +63,7 @@ export default class Item {
     newTask.removeAttribute("readonly")
   }
 
-  remove (event) {
+  remove(event) {
     const removedItem = event.target.parentNode
     const index = removedItem.getAttribute(ATTRIBUTE_ITEM)
     this.todolist.splice(index, 1)

@@ -6,7 +6,7 @@ const item = new Item()
 const ui = new UI()
 
 document.addEventListener("DOMContentLoaded", () => {
-  item.todolist?.forEach((e, i) => item.add(e, i))
+  item.todolist?.forEach((element, index) => item.add(element, index))
 })
 
 BTN_ADD.addEventListener('click', toDoHandler)
@@ -18,11 +18,12 @@ INPUT.addEventListener('keydown', function (e) {
 })
 
 function toDoHandler() {
-  let valueInput = INPUT.value
+  const valueInput = INPUT.value
   if (valueInput && !item.todolist.some(i => i.title === valueInput)) {
-    item.todolist.push({title: valueInput, completed: false, est: ''})
+    // item.todolist.push({title: valueInput, completed: false, est: ''})
+    item.add(valueInput)
+
     INPUT.value = ''
-    item.add()
     ui.validate(true)
   } else {
     ui.validate(false)
