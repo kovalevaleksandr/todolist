@@ -1,87 +1,105 @@
-import {ATTRIBUTE_ITEM, BTN_CLASS, ITEM_CLASS, LIST, MATERIAL_CLASS, TASK_CLASS} from "../../constants.js";
+import {
+    ATTRIBUTE_ITEM,
+    BTN_CLASS,
+    ITEM_CLASS,
+    LIST,
+    MATERIAL_CLASS,
+    TASK_CLASS,
+    EDIT_CLASS,
+    DELETE_CLASS
+} from "../../constants.js";
 import UI from "./UI.js"
 
 export default class Item {
-  constructor() {
-    this.store = new UI();
-
-    this.todolist = this.store.list
-  }
-
-  add(element, index) {
-    const currentIndex = index ?? this.todolist.length - 1
-    // const currentElement = element || this.todolist[currentIndex]
-    const taskTitle = element
-
-    const item = document.createElement('div')
-    const state = document.createElement('INPUT')
-    const task = document.createElement('input')
-    const edit = document.createElement('div')
-    const del = document.createElement('div')
-
-    item.classList.add(ITEM_CLASS)
-    task.classList.add(TASK_CLASS)
-    edit.classList.add(BTN_CLASS, MATERIAL_CLASS, 'button-edit')
-    del.classList.add(BTN_CLASS, MATERIAL_CLASS)
-    state.classList.add('todolist__state')
-
-    task.setAttribute('readonly', 'readonly')
-    state.setAttribute('type', 'checkbox')
-
-    edit.addEventListener('click', this.update)
-
-    item.setAttribute(ATTRIBUTE_ITEM, currentIndex.toString())
-
-    task.value = taskTitle
-    edit.innerHTML = 'edit'
-    del.innerHTML = 'delete'
-
-    LIST.append(item)
-    item.append(state, task, edit, del)
-
-    del.addEventListener('click', (e) => this.remove(e))
-    state.addEventListener('change', (e) => this.check(e))
-    this.store.addTask(taskTitle)
-  }
-
-  update(event) {
-    const currentElement = event.target
-    const removedItem = currentElement.parentNode
-    const newTask = removedItem.querySelector('.todolist__task-new')
-
-    if (currentElement.classList.contains('save')) {
-      const index = removedItem.getAttribute(ATTRIBUTE_ITEM)
-      this.store.updateTask(newTask.value, index)
-      newTask.setAttribute("readonly", "readonly")
-      currentElement.classList.remove('save')
-      currentElement.innerHTML = 'edit'
-      return true
+    constructor() {
+        this.store = new UI()
+        this.todolist = this.store.list
+        //this.todolist
     }
-    currentElement.innerHTML = 'done'
-    currentElement.classList.add('save')
 
-    newTask.removeAttribute("readonly")
-  }
+    renderingTask(elem) {
+        const item = document.createElement('div')
+        const check = document.createElement('INPUT')
+        const task = document.createElement('input')
+        const edit = document.createElement('div')
+        const del = document.createElement('div')
 
-  remove(event) {
-    const removedItem = event.target.parentNode
-    const index = removedItem.getAttribute(ATTRIBUTE_ITEM)
-    this.todolist.splice(index, 1)
-    removedItem.remove()
-  }
+        const checkAfterReload = elem.completed ? 'state--ready' : '⠀'
 
-  check(event) {
-    const currentElement = event.target
-    const itemParent = currentElement.parentNode
-    const item = itemParent.querySelector(`.${TASK_CLASS}`)
-    const index = itemParent.getAttribute(ATTRIBUTE_ITEM)
+        item.classList.add(ITEM_CLASS)
+        task.classList.add(TASK_CLASS, checkAfterReload)
+        edit.classList.add(MATERIAL_CLASS, EDIT_CLASS)
+        del.classList.add(MATERIAL_CLASS, DELETE_CLASS)
+        check.classList.add('todolist__state')
 
-    if (currentElement.checked) {
-      this.todolist[index].completed = true
-      item.classList.add('state--ready')
-    } else {
-      this.todolist[index].completed = false
-      item.classList.remove('state--ready')
+        task.setAttribute('readonly', 'readonly')
+        task.setAttribute('value', elem.title)
+        check.setAttribute('type', 'checkbox')
+        check.checked = elem.completed
+        item.setAttribute(ATTRIBUTE_ITEM, elem.id)
+
+        edit.innerHTML = 'edit'
+        del.innerHTML = 'delete'
+
+        LIST.append(item)
+        item.append(check, task, edit, del)
+
+        edit.addEventListener('click', (e) => this.update(e))
+        del.addEventListener('click', (e) => this.remove(e))
+        check.addEventListener('change', (e) => this.check(e))
     }
-  }
+
+    add(value) {
+        const task = this.store.addTask(value)
+        this.renderingTask(task)
+    }
+
+    update(event) {
+        const currentElement = event.target
+        const parentItem = currentElement.parentNode
+        const taskField = parentItem.querySelector('.todolist__task-new')
+        const index = parentItem.getAttribute(ATTRIBUTE_ITEM)
+        if (currentElement.classList.contains('save')) {
+            taskField.setAttribute("readonly", "readonly")
+            currentElement.classList.remove('save')
+            currentElement.innerHTML = 'edit'
+
+            if (this.todolist.findIndex(item => item.title === taskField.value) === -1) {
+                this.store.updateTask(taskField.value, index)
+            } else {
+                this.store.validate(false)
+                taskField.value = this.todolist[index].title
+            }
+
+        } else {
+            currentElement.innerHTML = 'done'
+            currentElement.classList.add('save')
+            taskField.removeAttribute("readonly")
+        }
+    }
+
+    remove(event) {
+        const removedItem = event.target.parentNode
+        const id = removedItem.getAttribute(ATTRIBUTE_ITEM)
+        const removeItemIndex = this.todolist.findIndex(item => item.id === id)
+        this.todolist.splice(removeItemIndex, 1)
+        removedItem.remove()
+        this.store.removeTask(id)
+    }
+
+    check(event) {
+        const currentElement = event.target
+        const itemParent = currentElement.parentNode
+        const item = itemParent.querySelector(`.${TASK_CLASS}`)
+        const id = itemParent.getAttribute(ATTRIBUTE_ITEM)
+        const element = this.todolist.find(elem => elem.id === id)
+        if (currentElement.checked) {
+            element.completed = false
+            item.classList.add('state--ready')
+        } else {
+            element.completed = true
+            item.classList.remove('state--ready')
+        }
+        this.store.toggleTask(id)
+    }
 }

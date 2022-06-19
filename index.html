@@ -11,54 +11,75 @@
 
 </head>
 <body>
-<section class="todolist__header">
-<div class="todolist__container">
-    <span>Exceed To-Do list</span>
-</div>
-</section>
 
-<section class="todolist">
-    <div class="todolist__container">
-        <div class="todolist__functional">
-
-            <div class="todolist__wrapper">
-                <input class="todolist__search" placeholder="Найдите задачу">
-                <div class="todolist__button button-search">
-                            <span class="material-symbols-outlined">
-                                search
-                            </span>
+<div class="wrapper">
+    <header class="header">
+        <div class="container">
+            <div class="header__wrapper">
+                <div class="header__logo">
+                    <a class="header__link" href="#">Exceed To-Do list </a>
                 </div>
             </div>
+        </div>
+    </header>
 
-
-            <div class="todolist__wrapper">
-                <div class="todolist__search-all"></div>
-                <div class="todolist__search-completed"></div>
-                <div class="todolist__search-unfulfilled"></div>
-            </div>
-
-            <div class="todolist__functional-item">
-                <input
-                        class="todolist__input"
-                        name="input__new-task"
-                        id="input__new-task"
-                        type="text"
-                        placeholder="Создать задачу"
-                        value=""
-                >
-                <div class="todolist__button button-add">
+    <section class="main">
+        <div class="container">
+            <div class="main__wrapper">
+                <div class="add-task">
+                        <input
+                                class="add-task__input"
+                                name="input__new-task"
+                                id="input__new-task"
+                                type="text"
+                                placeholder="Введите название задания"
+                                value=""
+                        >
+                        <div class="add-task__button button--add">
                             <span class="material-symbols-outlined">
                                 add
                             </span>
+                            <span>Добавить задание</span>
+                        </div>
+                    </div>
+
+
+                <p class="error">Вы вводите пустую или уже имеющуюся задачу!</p>
+
+                <div class="filter">
+                    <div class="filter__button button--all">
+                        <span>Все задания</span>
+                    </div>
+                    <div class="filter__button button--active">
+                        <span>Активные задания</span>
+                    </div>
+                    <div class="filter__button button--completed">
+                        <span>Выполненные задания</span>
+                    </div>
+
+                </div>
+
+
+                    <div class="list">
+                    </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__wrapper">
+                <div class="footer__logo">
+                    <a class="footer__link" href="#">Exceed To-Do list </a>
                 </div>
             </div>
         </div>
 
-        <p class="error">Вы вводите пустую или уже имеющуюся задачу!</p>
-        <div class="todolist__list">
-        </div>
-    </div>
-</section>
+    </footer>
+</div>
+
 
 <script src="index.js" type="module"></script>
 <script src="src/classes/Item.js" type="module"></script>
