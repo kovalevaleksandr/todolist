@@ -13,7 +13,8 @@ export default class UI {
     }
 
     updateTask(title, index) {
-        this.list[index].title = title
+        const thisObj = this.list.find(item=>item.id === index)
+        thisObj.title = title
         localStorage.setItem("todolist", JSON.stringify(this.list))
     }
 

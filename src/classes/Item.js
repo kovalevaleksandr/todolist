@@ -64,14 +64,17 @@ export default class Item {
             currentElement.classList.remove('save')
             currentElement.innerHTML = 'edit'
 
-            if (this.todolist.findIndex(item => item.title === taskField.value) === -1) {
+            if (this.todolist.findIndex(item => item.title === taskField.value) === -1 || this.todolist.find(item=>item.id === index).title === taskField.value)  {
                 this.store.updateTask(taskField.value, index)
+                console.log(this.todolist.find(item=>item.id === index).title === taskField.value )
             } else {
                 this.store.validate(false)
-                taskField.value = this.todolist[index].title
+                const thisObj = this.todolist.find(item=>item.id === index)
+                taskField.value = thisObj.title
             }
 
         } else {
+            this.store.validate(true)
             currentElement.innerHTML = 'done'
             currentElement.classList.add('save')
             taskField.removeAttribute("readonly")
