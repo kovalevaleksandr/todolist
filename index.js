@@ -36,17 +36,14 @@ function getSortTasks(event) {
   const listClass = event.currentTarget.className
   switch (listClass) {
     case 'filter__button button--active':
-      console.log(1)
       const completedArr = item.todolist.filter(item => item.completed === false)
       completedArr.forEach(element => item.renderingTask(element))
       break;
     case 'filter__button button--completed':
-      console.log(1)
       const notCompletedArr = item.todolist.filter(item => item.completed === true)
       notCompletedArr.forEach(element => item.renderingTask(element))
       break;
     case 'filter__button button--all':
-      console.log(1)
       item.todolist.forEach(element => item.renderingTask(element))
       break;
   }
@@ -57,6 +54,7 @@ const modal = document.querySelector('.modal')
 const modalInput = document.querySelector('.modal__input')
 const search = document.querySelector('.search')
 search.addEventListener('click', () => {
+
   if (search.classList.contains('search--active')) {
     search.classList.remove('search--active')
     document.querySelectorAll('.filter__button').forEach(item => item.classList.remove('button--filter-active'))
@@ -76,7 +74,7 @@ function getSearchElement() {
   modal.style.display = "none"
 }
 
-const func1 = debounce(getSearchElement, 1000)
+const funcInner = debounce(getSearchElement, 1000)
 function debounce(fn, time) {
   let timeout
   return function() {
@@ -85,7 +83,7 @@ function debounce(fn, time) {
   }
 }
 
-modalInput.oninput = func1
+modalInput.oninput = funcInner
 document.querySelector('.modal__close').addEventListener('click', () => {
   modal.style.display = "none"
 })
