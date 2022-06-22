@@ -1,3 +1,5 @@
+@import './vars/fonts.css';
+
 /*nulling*/
 
 *,
@@ -27,7 +29,7 @@ html {
 
 body {
     height: 100%;
-    font-family: 'opensans', sans-serif;
+    font-family: 'Inter', sans-serif;
     min-width: 320px;
     margin: 0;
     padding: 0;
@@ -109,6 +111,33 @@ h6 {
     flex-direction: column;
 }
 
+/*notice*/
+
+.notice {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    padding: 16px 26px;
+    background: #F6FFED;
+    border: 1px solid #B7EB8F;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    position: fixed;
+    top: 80px;
+    right: 20px;
+}
+
+.notice--active {
+    display: flex;
+}
+
+.notice__button {
+    cursor: pointer;
+}
+
+.search {
+    cursor: pointer;
+}
 
 /*filter*/
 
