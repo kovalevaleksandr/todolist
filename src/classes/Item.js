@@ -14,7 +14,6 @@ export default class Item {
     constructor() {
         this.store = new UI()
         this.todolist = this.store.list
-        //this.todolist
     }
 
     renderingTask(elem) {
@@ -64,12 +63,11 @@ export default class Item {
             currentElement.classList.remove('save')
             currentElement.innerHTML = 'edit'
 
-            if (this.todolist.findIndex(item => item.title === taskField.value) === -1 || this.todolist.find(item=>item.id === index).title === taskField.value)  {
+            if (this.todolist.findIndex(item => item.title === taskField.value) === -1 || this.todolist.find(item => item.id === index).title === taskField.value) {
                 this.store.updateTask(taskField.value, index)
-                console.log(this.todolist.find(item=>item.id === index).title === taskField.value )
             } else {
                 this.store.validate(false)
-                const thisObj = this.todolist.find(item=>item.id === index)
+                const thisObj = this.todolist.find(item => item.id === index)
                 taskField.value = thisObj.title
             }
 
@@ -99,6 +97,12 @@ export default class Item {
         if (currentElement.checked) {
             element.completed = false
             item.classList.add('state--ready')
+            const a = document.querySelector('.notice')
+            a.classList.add('notice--active')
+            document.querySelector('.notice__name').innerHTML = element.title
+            setTimeout(function () {
+                a.classList.remove('notice--active')
+            }, 5000)
         } else {
             element.completed = true
             item.classList.remove('state--ready')
