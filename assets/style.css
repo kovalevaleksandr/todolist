@@ -1,3 +1,5 @@
+@import './vars/fonts.css';
+
 /*nulling*/
 
 *,
@@ -27,7 +29,7 @@ html {
 
 body {
     height: 100%;
-    font-family: 'opensans', sans-serif;
+    font-family: 'Inter', sans-serif;
     min-width: 320px;
     margin: 0;
     padding: 0;
@@ -109,6 +111,8 @@ h6 {
     flex-direction: column;
 }
 
+/*notice*/
+
 .notice {
     display: none;
     flex-direction: column;
@@ -127,6 +131,13 @@ h6 {
     display: flex;
 }
 
+.notice__button {
+    cursor: pointer;
+}
+
+.search {
+    cursor: pointer;
+}
 
 /*filter*/
 

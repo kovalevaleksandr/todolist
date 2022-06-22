@@ -6,8 +6,8 @@ export default class UI {
     }
 
      addTask(title) {
-        const lastIndex = this.list.length > 0 ? Number(this.list[this.list.length - 1].id) + 1 : 0
-        this.list.push({id: lastIndex.toString(), title, completed: false, est: ""})
+        const lastId = this.list.length > 0 ? Number(this.list[this.list.length - 1].id) + 1 : 0
+        this.list.push({id: lastId.toString(), title, completed: false, est: ""})
         localStorage.setItem("todolist", JSON.stringify(this.list))
         return this.list[this.list.length - 1]
     }
@@ -19,16 +19,15 @@ export default class UI {
     }
 
     toggleTask(id) {
-        const element = this.list.find(elem => elem.id === id)
-        element.completed = !element.completed
+        const currentElement = this.list.find(elem => elem.id === id)
+        currentElement.completed = !currentElement.completed
         localStorage.setItem("todolist", JSON.stringify(this.list))
     }
 
     removeTask(id) {
-        const arrayLocal = JSON.parse(localStorage.getItem("todolist"))
-        const removeItemIndex = arrayLocal.findIndex(item => item.id === id)
-        arrayLocal.splice(removeItemIndex, 1)
-        localStorage.setItem("todolist", JSON.stringify(arrayLocal))
+        const removeItemIndex = this.list.findIndex(item => item.id === id)
+        this.list.splice(removeItemIndex, 1)
+        localStorage.setItem("todolist", JSON.stringify(this.list))
     }
 
     validate(error) {

@@ -53,6 +53,23 @@ function getCompletedTasks(event) {
     event.currentTarget.classList.add('button--filter-active')
 }
 
+document.querySelector('.search').addEventListener('click', ()=>{
+    const searchItem = document.createElement('input')
+    searchItem.classList.add('search-input__input')
+    document.querySelector('.search-input').append(searchItem)
+    const v = document.querySelector('.search-input__input')
+    v.addEventListener('keydown', function (e) {
+        if (e.keyCode === 13) {
+            document.querySelectorAll('.filter__button').forEach(item => item.classList.remove('button--filter-active'))
+            document.querySelectorAll(`.${ITEM_CLASS}`).forEach(item => item.remove())
+            const completedArr = item.todolist.filter(item => item.title === v.value)
+            completedArr.forEach(element => item.renderingTask(element))
+        }
+    })
+})
+
+
+
 
 
 

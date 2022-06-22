@@ -1,6 +1,5 @@
 import {
     ATTRIBUTE_ITEM,
-    BTN_CLASS,
     ITEM_CLASS,
     LIST,
     MATERIAL_CLASS,
@@ -23,7 +22,12 @@ export default class Item {
         const edit = document.createElement('div')
         const del = document.createElement('div')
 
-        const checkAfterReload = elem.completed ? 'state--ready' : '⠀'
+        // const checkAfterReload = elem.completed ? 'state--ready' : '1'
+        let checkAfterReload = '1'
+
+        if (elem.completed) {
+            checkAfterReload = 'state--reade'
+        }
 
         item.classList.add(ITEM_CLASS)
         task.classList.add(TASK_CLASS, checkAfterReload)
@@ -83,9 +87,9 @@ export default class Item {
         const removedItem = event.target.parentNode
         const id = removedItem.getAttribute(ATTRIBUTE_ITEM)
         const removeItemIndex = this.todolist.findIndex(item => item.id === id)
+        this.store.removeTask(id)
         this.todolist.splice(removeItemIndex, 1)
         removedItem.remove()
-        this.store.removeTask(id)
     }
 
     check(event) {
@@ -99,10 +103,20 @@ export default class Item {
             item.classList.add('state--ready')
             const a = document.querySelector('.notice')
             a.classList.add('notice--active')
-            document.querySelector('.notice__name').innerHTML = element.title
+            document.querySelector('.notice__name').innerHTML = `<span> ${element.title} </span>`
+
+            document.querySelector('.notice__button').addEventListener('click', ()=>{
+                this.store.toggleTask(id)
+                element.completed = true
+                item.classList.remove('state--ready')
+                currentElement.checked = false
+                a.classList.remove('notice--active')
+            })
+
             setTimeout(function () {
                 a.classList.remove('notice--active')
-            }, 5000)
+            }, 7000)
+
         } else {
             element.completed = true
             item.classList.remove('state--ready')
