@@ -61,7 +61,7 @@ search.addEventListener('click', () => {
     document.querySelectorAll(`.${ITEM_CLASS}`).forEach(item => item.remove())
     item.todolist.forEach((element) => item.renderingTask(element))
   } else {
-    modal.style.display = "block"
+    modal.style.display = 'block'
   }
 })
 
@@ -71,7 +71,7 @@ function getSearchElement() {
   const completedArr = item.todolist.filter(item => item.title === modalInput.value)
   completedArr.forEach(element => item.renderingTask(element))
   search.classList.add('search--active')
-  modal.style.display = "none"
+  modal.style.display = 'none'
 }
 
 const funcInner = debounce(getSearchElement, 1000)
@@ -89,6 +89,24 @@ document.querySelector('.modal__close').addEventListener('click', () => {
 })
 document.querySelector('.modal__overlay').addEventListener('click', () => {
   modal.style.display = "none"
+})
+
+
+document.querySelector('.header__auth').addEventListener('click', () => {
+document.querySelector('.modal-auth').style.display = 'block'
+})
+
+document.querySelectorAll('.modal-auth__item').forEach(item=> {
+  item.addEventListener('click', (e) => {
+    document.querySelectorAll('.modal-auth__item').forEach(item=>{
+      item.classList.remove('auth--active')
+    })
+    item.classList.add('auth--active')
+  })
+})
+
+document.querySelector('.modal-auth__overlay').addEventListener('click', () => {
+  document.querySelector('.modal-auth').style.display = "none"
 })
 
 

@@ -19,6 +19,9 @@
                 <div class="header__logo">
                     <a class="header__link" href="#">Exceed To-Do list </a>
                 </div>
+                <div class="header__auth">
+                    <span>login</span>
+                </div>
             </div>
         </div>
     </header>
@@ -27,21 +30,21 @@
         <div class="container">
             <div class="main__wrapper">
                 <div class="add-task">
-                        <input
-                                class="add-task__input"
-                                name="input__new-task"
-                                id="input__new-task"
-                                type="text"
-                                placeholder="Введите название задания"
-                                value=""
-                        >
-                        <div class="add-task__button button--add">
+                    <input
+                            class="add-task__input"
+                            name="input__new-task"
+                            id="input__new-task"
+                            type="text"
+                            placeholder="Введите название задания"
+                            value=""
+                    >
+                    <div class="add-task__button button--add">
                             <span class="material-symbols-outlined">
                                 add
                             </span>
-                            <span>Добавить задание</span>
-                        </div>
+                        <span>Добавить задание</span>
                     </div>
+                </div>
 
 
                 <p class="error">Вы вводите пустую или уже имеющуюся задачу!</p>
@@ -61,8 +64,8 @@
                     </div>
                 </div>
 
-                    <div class="list">
-                    </div>
+                <div class="list">
+                </div>
 
             </div>
         </div>
@@ -74,15 +77,14 @@
                 </div>
                 <input
                         class="modal__input"
-                       type="text"
+                        type="text"
                         placeholder="Введите название задания"
                 >
             </div>
-<div class="modal__overlay">
-
-</div>
+            <div class="modal__overlay">
+            </div>
         </div>
-        
+
         <div class="notice">
             <div class="notice__title">
                 <span>Задание успешно выполнено</span>
@@ -94,6 +96,65 @@
                 <span>Нажмите чтобы отменить действие</span>
             </div>
         </div>
+
+
+        <div class="modal-auth">
+            <div class="modal-auth__content authorization">
+                <div class="modal-auth__title">
+                    <h1>Exceed To-Do list</h1>
+                </div>
+                <div class="modal-auth__desc">
+                    <span>Пожалуйста, выполните вход или регистрацию в системе</span>
+                </div>
+                <div class="modal-auth__wrapper">
+                    <ul class="modal-auth__list">
+                        <li class="modal-auth__item"><span>Вход</span></li>
+                        <li class="modal-auth__item"><span>Регистрация</span></li>
+                    </ul>
+
+                    <input
+                            class="modal-auth__input login"
+                            type="text"
+                            placeholder="Логин"
+                    >
+                    <input
+                            class="modal-auth__input password"
+                            type="text"
+                            placeholder="Пароль"
+                    >
+                    <div class="modal-auth__button">
+                        <span>Войти</span>
+                    </div>
+                </div>
+            </div>
+
+<!--            <div class="modal-auth__content registration">-->
+<!--                <input-->
+<!--                        class="modal-auth__input login"-->
+<!--                        type="text"-->
+<!--                        placeholder="Имя"-->
+<!--                >-->
+<!--                <input-->
+<!--                        class="modal-auth__input login"-->
+<!--                        type="text"-->
+<!--                        placeholder="Логин"-->
+<!--                >-->
+
+<!--                <input-->
+<!--                        class="modal-auth__input password"-->
+<!--                        type="text"-->
+<!--                        placeholder="Пароль"-->
+<!--                > <input-->
+<!--                        class="modal-auth__input password"-->
+<!--                        type="text"-->
+<!--                        placeholder="Повтор пароля"-->
+<!--                >-->
+<!--            </div>-->
+
+            <div class="modal-auth__overlay">
+            </div>
+        </div>
+
     </section>
 
 
