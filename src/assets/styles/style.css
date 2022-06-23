@@ -1,4 +1,4 @@
-@import './vars/fonts.css';
+@import 'inter.css';
 
 /*nulling*/
 
@@ -6,7 +6,7 @@
 *::before,
 *::after {
     outline: none;
-    box-sizing: inherit;
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
     border: 0;
@@ -93,6 +93,18 @@ h6 {
 
 }
 
+.header__auth {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    color: #464646;
+    cursor: pointer;
+}
+
 .header__link {
     font-family: 'Inter', sans-serif;
     font-style: normal;
@@ -138,6 +150,12 @@ h6 {
 .search {
     cursor: pointer;
 }
+
+.search--active {
+    color: red;
+}
+
+
 
 /*filter*/
 
@@ -273,12 +291,33 @@ input#input__new-task::placeholder {
 }
 
 .todolist__state {
+    display: none;
     margin-right: 24px;
+}
+
+.todolist__state + .label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 18px;
+    height: 16px;
+    background: #FFFFFF;
+    border-radius: 2px;
+    border: 1px solid #DBE0E9;
+    margin-right: 24px;
+}
+
+.todolist__state:checked + label {
+    background: #a3bdff;
 }
 
 .button--edit,
 .button--del {
     cursor: pointer;
+}
+
+.button--del {
+    color: #D60103;
 }
 
 .button--edit {
@@ -297,7 +336,6 @@ input#input__new-task::placeholder {
 }
 
 .state--ready {
-    position: relative;
     color: #464646;
     text-decoration: line-through;
 }
@@ -328,3 +366,240 @@ input#input__new-task::placeholder {
     line-height: 24px;
     color: #606060;
 }
+
+.edit--disable {
+    color: #606060;
+    pointer-events: none;
+}
+
+.remove--disable {
+    color: #ef999a;
+}
+
+/*auth*/
+/*.modal-auth {*/
+/*    display: none;*/
+/*    position: fixed;*/
+/*    z-index: 3;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    bottom: 0;*/
+/*    right: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    overflow: auto;*/
+/*}*/
+
+/*modal*/
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.modal__overlay {
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+}
+
+/*modal-search*/
+
+.modal-search__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    padding: 5px;
+    max-width: 300px;
+    width: 100%;
+    position: absolute;
+    top: 5%;
+    right: 20px;
+    z-index: 2;
+    background-color: #ffffff;
+}
+
+.modal-search__close {
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+.modal-search__title {
+    align-self: flex-end;
+    width: 80%;
+    margin-bottom: 15px;
+}
+
+.modal-search__input {
+    align-self: flex-end;
+    box-shadow: 1px 1px 4px rgb(0 0 0 / 10%);
+    border-radius: 2px 0 0 2px;
+    padding: 4px 6px;
+    border: 1px solid #000000;
+    margin-bottom: 30px;
+    width: 80%;
+}
+
+
+/*modal-edit*/
+.save {
+    color: #B7EB8F;
+}
+
+.modal--active {
+    display: block;
+}
+
+/*modal-auth*/
+
+.modal-auth__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+    background: #FFFFFF;
+    width: 100%;
+    position: absolute;
+    max-width: 580px;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index: 2;
+}
+
+.modal-auth__title {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 38px;
+    letter-spacing: 0.005em;
+    color: #464646;
+    margin-bottom: 12px;
+}
+
+.modal-auth__desc {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #606060;
+    margin-bottom: 34px;
+}
+
+.modal-auth__list {
+    display: flex;
+    cursor: pointer;
+    margin-bottom: 34px;
+    position: relative;
+}
+
+.modal-auth__list:before {
+    content: '';
+    display: block;
+    height: 2px;
+    background: #F0F2F6;
+    position: absolute;
+    width: 100%;
+    top: 92%;
+    z-index: 1;
+}
+
+
+.modal-auth__item {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #606060;
+    margin-right: 32.5px;
+    border-bottom: 2px solid transparent;
+    z-index: 2;
+}
+
+.modal-auth__wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 368px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.modal-auth__button {
+    display: flex;
+    padding: 8px 160px;
+    background: #1859FF;
+    border-radius: 2px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.modal-auth__input {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #B4BAC4;
+    padding: 8px 12px;
+    max-width: 368px;
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #DBE0E9;
+    border-radius: 2px;
+}
+
+.modal-auth__overlay {
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.login {
+    margin-bottom: 28px;
+}
+
+.password {
+    margin-bottom: 60px;
+}
+
+.auth--active {
+    color: #1859FF;
+    border-bottom: 2px solid #1859FF;
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todolist</title>
+<!--    <link rel="stylesheet" href="assets/styles/style.css"/>-->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+
+</head>
+<body>
+
+<div class="wrapper">
+    <header class="header">
+        <div class="container">
+            <div class="header__wrapper">
+                <div class="header__logo">
+                    <a class="header__link" href="#">Exceed To-Do list </a>
+                </div>
+                <div class="header__auth">
+                    <span>login</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="main">
+        <div class="container">
+            <div class="main__wrapper">
+                <div class="add-task">
+                    <input
+                            class="add-task__input"
+                            name="input__new-task"
+                            id="input__new-task"
+                            type="text"
+                            placeholder="Введите название задания"
+                            value=""
+                    >
+                    <div class="add-task__button button--add">
+                            <span class="material-symbols-outlined">
+                                add
+                            </span>
+                        <span>Добавить задание</span>
+                    </div>
+                </div>
+
+
+                <p class="error">Вы вводите пустую или уже имеющуюся задачу!</p>
+
+                <div class="filter">
+                    <div class="filter__button button--all">
+                        <span>Все задания</span>
+                    </div>
+                    <div class="filter__button button--active">
+                        <span>Активные задания</span>
+                    </div>
+                    <div class="filter__button button--completed">
+                        <span>Выполненные задания</span>
+                    </div>
+                    <div class="search material-symbols-outlined">
+                        <span>search</span>
+                    </div>
+                </div>
+
+                <div class="list">
+                </div>
+
+            </div>
+        </div>
+
+        <div
+                id="modal-search"
+                class="modal"
+        >
+            <div class="modal-search__content">
+                <div class="modal-search__close material-symbols-outlined">
+                    <span>close</span>
+                </div>
+                <div class="modal-search__title">
+                    <span>Введите заголовок для поиска:</span>
+                </div>
+                <input
+                        class="modal-search__input"
+                        type="text"
+                        placeholder="Введите название задания"
+                >
+            </div>
+            <div class="modal__overlay">
+            </div>
+        </div>
+
+        <div
+                id="modal-edit"
+                class="modal"
+        >
+            <div class="modal-edit__content">
+                <div class="modal__close material-symbols-outlined">
+                    <span>close</span>
+                </div>
+                <div class="modal__title">
+
+                </div>
+                <input
+                        class="modal__input"
+                        type="text"
+                        placeholder="Введите название задания"
+                >
+            </div>
+            <div class="modal__overlay">
+            </div>
+        </div>
+
+        <div class="notice">
+            <div class="notice__title">
+                <span>Задание успешно выполнено</span>
+            </div>
+            <div class="notice__name">
+                <span></span>
+            </div>
+            <div class="notice__button">
+                <span>Нажмите чтобы отменить действие</span>
+            </div>
+        </div>
+
+
+        <div class="modal modal-auth">
+            <div class="modal-auth__content authorization">
+                <div class="modal-auth__title">
+                    <h1>Exceed To-Do list</h1>
+                </div>
+                <div class="modal-auth__desc">
+                    <span>Пожалуйста, выполните вход или регистрацию в системе</span>
+                </div>
+                <div class="modal-auth__wrapper">
+                    <ul class="modal-auth__list">
+                        <li class="modal-auth__item"><span>Вход</span></li>
+                        <li class="modal-auth__item"><span>Регистрация</span></li>
+                    </ul>
+
+                    <input
+                            class="modal-auth__input login"
+                            type="text"
+                            placeholder="Логин"
+                    >
+                    <input
+                            class="modal-auth__input password"
+                            type="text"
+                            placeholder="Пароль"
+                    >
+                    <div class="modal-auth__button">
+                        <span>Войти</span>
+                    </div>
+                </div>
+            </div>
+
+<!--            <div class="modal-auth__content registration">-->
+<!--                <input-->
+<!--                        class="modal-auth__input login"-->
+<!--                        type="text"-->
+<!--                        placeholder="Имя"-->
+<!--                >-->
+<!--                <input-->
+<!--                        class="modal-auth__input login"-->
+<!--                        type="text"-->
+<!--                        placeholder="Логин"-->
+<!--                >-->
+
+<!--                <input-->
+<!--                        class="modal-auth__input password"-->
+<!--                        type="text"-->
+<!--                        placeholder="Пароль"-->
+<!--                > <input-->
+<!--                        class="modal-auth__input password"-->
+<!--                        type="text"-->
+<!--                        placeholder="Повтор пароля"-->
+<!--                >-->
+<!--            </div>-->
+
+            <div class="modal-auth__overlay">
+            </div>
+        </div>
+
+    </section>
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__wrapper">
+                <div class="footer__logo">
+                    <a class="footer__link" href="#">Exceed To-Do list </a>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+</div>
+
+<script defer src="../dist/index.bundle.js"></script>
+</body>
+</html>

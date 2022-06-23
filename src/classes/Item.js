@@ -6,7 +6,7 @@ import {
     TASK_CLASS,
     EDIT_CLASS,
     DELETE_CLASS
-} from "../../constants.js";
+} from "../common/constants.js";
 import UI from "./UI.js"
 
 export default class Item {
@@ -21,12 +21,13 @@ export default class Item {
         const task = document.createElement('input')
         const edit = document.createElement('div')
         const del = document.createElement('div')
+        const label = document.createElement('label')
 
         // const checkAfterReload = elem.completed ? 'state--ready' : '1'
         let checkAfterReload = '1'
 
         if (elem.completed) {
-            checkAfterReload = 'state--reade'
+            checkAfterReload = 'state--ready'
         }
 
         item.classList.add(ITEM_CLASS)
@@ -34,18 +35,24 @@ export default class Item {
         edit.classList.add(MATERIAL_CLASS, EDIT_CLASS)
         del.classList.add(MATERIAL_CLASS, DELETE_CLASS)
         check.classList.add('todolist__state')
+        label.classList.add('label')
+
 
         task.setAttribute('readonly', 'readonly')
         task.setAttribute('value', elem.title)
+        task.setAttribute("readonly", "readonly")
         check.setAttribute('type', 'checkbox')
+        check.setAttribute('id', elem.id)
         check.checked = elem.completed
         item.setAttribute(ATTRIBUTE_ITEM, elem.id)
+        label.setAttribute('for', elem.id)
 
+        label.innerHTML = ''
         edit.innerHTML = 'edit'
         del.innerHTML = 'delete'
 
         LIST.append(item)
-        item.append(check, task, edit, del)
+        item.append(check, label, task, edit, del )
 
         edit.addEventListener('click', (e) => this.update(e))
         del.addEventListener('click', (e) => this.remove(e))
@@ -58,12 +65,12 @@ export default class Item {
     }
 
     update(event) {
+
         const currentElement = event.target
         const parentItem = currentElement.parentNode
         const taskField = parentItem.querySelector('.todolist__task-new')
         const index = parentItem.getAttribute(ATTRIBUTE_ITEM)
         if (currentElement.classList.contains('save')) {
-            taskField.setAttribute("readonly", "readonly")
             currentElement.classList.remove('save')
             currentElement.innerHTML = 'edit'
 
@@ -76,19 +83,19 @@ export default class Item {
             }
 
         } else {
+            document.querySelector('.modal').style.display = 'block'
             this.store.validate(true)
             currentElement.innerHTML = 'done'
             currentElement.classList.add('save')
-            taskField.removeAttribute("readonly")
         }
     }
 
     remove(event) {
         const removedItem = event.target.parentNode
         const id = removedItem.getAttribute(ATTRIBUTE_ITEM)
-        const removeItemIndex = this.todolist.findIndex(item => item.id === id)
+        // const removeItemIndex = this.todolist.findIndex(item => item.id === id)
+        // // this.todolist.splice(removeItemIndex, 1)
         this.store.removeTask(id)
-        this.todolist.splice(removeItemIndex, 1)
         removedItem.remove()
     }
 
@@ -101,25 +108,32 @@ export default class Item {
         if (currentElement.checked) {
             element.completed = false
             item.classList.add('state--ready')
+            itemParent.querySelector(`.button--edit`).classList.add('edit--disable')
+            itemParent.querySelector(`.button--del`).classList.add('remove--disable')
             const a = document.querySelector('.notice')
             a.classList.add('notice--active')
             document.querySelector('.notice__name').innerHTML = `<span> ${element.title} </span>`
 
             document.querySelector('.notice__button').addEventListener('click', ()=>{
-                this.store.toggleTask(id)
                 element.completed = true
                 item.classList.remove('state--ready')
+                itemParent.querySelector(`.button--edit`).classList.remove('edit--disable')
+                itemParent.querySelector(`.button--del`).classList.remove('remove--disable')
                 currentElement.checked = false
                 a.classList.remove('notice--active')
+                this.store.toggleTask(id)
             })
 
-            setTimeout(function () {
+            setTimeout(function() {
                 a.classList.remove('notice--active')
-            }, 7000)
+
+            }, 3000)
 
         } else {
             element.completed = true
             item.classList.remove('state--ready')
+            itemParent.querySelector(`.button--edit`).classList.remove('edit--disable')
+            itemParent.querySelector(`.button--del`).classList.remove('remove--disable')
         }
         this.store.toggleTask(id)
     }

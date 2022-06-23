@@ -1,4 +1,4 @@
-import {ERROR} from "../../constants.js";
+import {ERROR} from "../common/constants.js";
 
 export default class UI {
     constructor() {
