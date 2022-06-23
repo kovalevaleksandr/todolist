@@ -1,1 +1,6 @@
+# IDE / Editor
 .idea
+
+# Dependency directories
+node_modules/
+

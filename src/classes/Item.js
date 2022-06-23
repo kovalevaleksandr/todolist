@@ -6,7 +6,7 @@ import {
     TASK_CLASS,
     EDIT_CLASS,
     DELETE_CLASS
-} from "../../constants.js";
+} from "../common/constants.js";
 import UI from "./UI.js"
 
 export default class Item {
@@ -40,13 +40,14 @@ export default class Item {
 
         task.setAttribute('readonly', 'readonly')
         task.setAttribute('value', elem.title)
+        task.setAttribute("readonly", "readonly")
         check.setAttribute('type', 'checkbox')
         check.setAttribute('id', elem.id)
         check.checked = elem.completed
         item.setAttribute(ATTRIBUTE_ITEM, elem.id)
         label.setAttribute('for', elem.id)
 
-        label.innerHTML = '<img src="../../assets/icons/check.svg" alt="check">'
+        label.innerHTML = ''
         edit.innerHTML = 'edit'
         del.innerHTML = 'delete'
 
@@ -64,12 +65,12 @@ export default class Item {
     }
 
     update(event) {
+
         const currentElement = event.target
         const parentItem = currentElement.parentNode
         const taskField = parentItem.querySelector('.todolist__task-new')
         const index = parentItem.getAttribute(ATTRIBUTE_ITEM)
         if (currentElement.classList.contains('save')) {
-            taskField.setAttribute("readonly", "readonly")
             currentElement.classList.remove('save')
             currentElement.innerHTML = 'edit'
 
@@ -82,18 +83,18 @@ export default class Item {
             }
 
         } else {
+            document.querySelector('.modal').style.display = 'block'
             this.store.validate(true)
             currentElement.innerHTML = 'done'
             currentElement.classList.add('save')
-            taskField.removeAttribute("readonly")
         }
     }
 
     remove(event) {
         const removedItem = event.target.parentNode
         const id = removedItem.getAttribute(ATTRIBUTE_ITEM)
-        const removeItemIndex = this.todolist.findIndex(item => item.id === id)
-        // this.todolist.splice(removeItemIndex, 1)
+        // const removeItemIndex = this.todolist.findIndex(item => item.id === id)
+        // // this.todolist.splice(removeItemIndex, 1)
         this.store.removeTask(id)
         removedItem.remove()
     }
@@ -126,7 +127,7 @@ export default class Item {
             setTimeout(function() {
                 a.classList.remove('notice--active')
 
-            }, 7000)
+            }, 3000)
 
         } else {
             element.completed = true

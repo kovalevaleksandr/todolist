@@ -1,6 +1,5 @@
 export const ITEM_CLASS = 'list__item'
 export const TASK_CLASS = 'todolist__task-new'
-export const BTN_CLASS = 'add-task__button'
 export const ADD_CLASS = 'button--add'
 export const EDIT_CLASS = 'button--edit'
 export const DELETE_CLASS = 'button--del'

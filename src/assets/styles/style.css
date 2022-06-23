@@ -1,4 +1,4 @@
-@import './vars/fonts.css';
+@import 'inter.css';
 
 /*nulling*/
 
@@ -156,63 +156,6 @@ h6 {
 }
 
 
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 999;
-    padding-top: 5%;
-    padding-left: 80%;
-    padding-right: 20px;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-
-}
-
-.modal__content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    padding: 5px;
-    max-width: 300px;
-    width: 100%;
-    position: absolute;
-    top: 5%;
-    right: 20px;
-    z-index: 2;
-    background-color: #ffffff;
-}
-
-.modal__close {
-    cursor: pointer;
-    align-self: flex-start;
-}
-
-.modal__input {
-    align-self: flex-end;
-    box-shadow: 1px 1px 4px rgb(0 0 0 / 10%);
-    border-radius: 2px 0 0 2px;
-    padding: 4px 6px;
-    border: 1px solid #000000;
-    margin-bottom: 30px;
-    width: 90%
-}
-
-.modal__overlay {
-    background-color: rgba(0, 0, 0, 0.4);
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 1;
-
-}
 
 /*filter*/
 
@@ -434,10 +377,25 @@ input#input__new-task::placeholder {
 }
 
 /*auth*/
-.modal-auth {
+/*.modal-auth {*/
+/*    display: none;*/
+/*    position: fixed;*/
+/*    z-index: 3;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    bottom: 0;*/
+/*    right: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    overflow: auto;*/
+/*}*/
+
+/*modal*/
+
+.modal {
     display: none;
     position: fixed;
-    z-index: 999;
+    z-index: 3;
     top: 0;
     left: 0;
     bottom: 0;
@@ -446,6 +404,66 @@ input#input__new-task::placeholder {
     height: 100%;
     overflow: auto;
 }
+
+.modal__overlay {
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+}
+
+/*modal-search*/
+
+.modal-search__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    padding: 5px;
+    max-width: 300px;
+    width: 100%;
+    position: absolute;
+    top: 5%;
+    right: 20px;
+    z-index: 2;
+    background-color: #ffffff;
+}
+
+.modal-search__close {
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+.modal-search__title {
+    align-self: flex-end;
+    width: 80%;
+    margin-bottom: 15px;
+}
+
+.modal-search__input {
+    align-self: flex-end;
+    box-shadow: 1px 1px 4px rgb(0 0 0 / 10%);
+    border-radius: 2px 0 0 2px;
+    padding: 4px 6px;
+    border: 1px solid #000000;
+    margin-bottom: 30px;
+    width: 80%;
+}
+
+
+/*modal-edit*/
+.save {
+    color: #B7EB8F;
+}
+
+.modal--active {
+    display: block;
+}
+
+/*modal-auth*/
 
 .modal-auth__content {
     display: flex;
@@ -577,6 +595,10 @@ input#input__new-task::placeholder {
     color: #1859FF;
     border-bottom: 2px solid #1859FF;
 }
+
+
+
+
 
 
 
