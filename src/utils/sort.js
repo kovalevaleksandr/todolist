@@ -1,9 +1,8 @@
 import {ITEM_CLASS} from "../common/constants.js"
 import Item from "../classes/Item.js"
 
-const item = new Item()
 
-export default function getSortTasks(event) {
+export default function getSortTasks(event, item) {
   document.querySelectorAll('.filter__button').forEach(item => item.classList.remove('button--filter-active'))
   document.querySelectorAll(`.${ITEM_CLASS}`).forEach(item => item.remove())
   const listClass = event.currentTarget.className

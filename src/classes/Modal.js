@@ -1,30 +1,60 @@
 const title_modal = document.querySelector('.modal-search__title')
 
 export default class Modal {
-  constructor(title, item) {
-    this.title = title
-    this.item = item
+  constructor(id) {
+    this.modalHtml = renderModal(id)
   }
 
-  renderModal() {
+  renderModal(id) {
+    //html
     title_modal.innerHTML = this.title
+    const modal = document.createElement('div')
+    modal.id = id
+    modal.classList.add('modal')
+    return document.querySelector(`#${id}`)
+  }
+
+  addToHeader(title) {
+    this.modalHtml.querySelector('.title')
+innerHtml = title
+  }
+
+  addToContent() {
 
   }
 
-  callModal() {
-    document.querySelector(`${this.item}`).addEventListener('click', (e) => {
-      e.target.classList.add('modal--active')
-    })
+  //в конец боди
+  toggle() {
+
   }
 
 
 }
 
+
 class Search extends Modal {
+
+  constructor() {
+    super('search');
+    this.addToHeader('<span>Введите строку</span>')
+  }
+
+  search() {
+
+  }
+
+}
+
+class Edit extends Modal {
 
   constructor(title, item) {
     super(title, item);
   }
 
+  edit()
+
 }
+
+const search = new Search()
+const edit = new Edit()
 

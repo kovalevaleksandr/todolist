@@ -30,8 +30,8 @@ function toDoHandler() {
   }
 }
 
-document.querySelectorAll('.filter__button').forEach(item => item.addEventListener('click', function (e) {
-  getSortTasks(e)
+document.querySelectorAll('.filter__button').forEach(i => i.addEventListener('click', function (e) {
+  getSortTasks(e, item)
 }))
 
 
