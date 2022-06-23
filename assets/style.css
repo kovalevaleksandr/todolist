@@ -565,6 +565,10 @@ input#input__new-task::placeholder {
     z-index: 1;
 }
 
+.save {
+    color: #52C41A;
+}
+
 .login {
     margin-bottom: 28px;
 }

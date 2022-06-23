@@ -5,9 +5,13 @@ import UI from "./src/classes/UI.js";
 const item = new Item()
 const ui = new UI()
 
-document.addEventListener("DOMContentLoaded", () => {
-  item.todolist.forEach((element) => item.renderingTask(element))
-})
+// document.addEventListener("DOMContentLoaded", () => {
+//   item.todolist.forEach((element) => item.renderingTask(element))
+// })
+  window.onload = () => {
+    item.todolist.forEach((element) => item.renderingTask(element))
+  }
+
 BTN_ADD.addEventListener('click', toDoHandler)
 INPUT.addEventListener('keydown', function (e) {
   if (e.keyCode === 13) {
@@ -108,6 +112,39 @@ document.querySelectorAll('.modal-auth__item').forEach(item=> {
 document.querySelector('.modal-auth__overlay').addEventListener('click', () => {
   document.querySelector('.modal-auth').style.display = "none"
 })
+
+function login(email, password) {
+  const apiKey = "AIzaSyCDqzZku5kbLtho6un9HDM9Jo0oueaX-LY"
+  return fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`,{
+    method: 'POST',
+    body: JSON.stringify({
+      email, password,
+      returnSecureToken: true
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(response => response.json())
+    .then(data => console.log(data))
+}
+
+
+function auth (event) {
+  event.preventDefault()
+
+  const email = event.target.querySelector('#email').value
+  const password = event.target.querySelector('#password').value
+
+  login(email, password)
+}
+
+
+/*auth*/
+document.querySelector('.modal-auth__form').addEventListener('submit', auth)
+
+
+
 
 
 

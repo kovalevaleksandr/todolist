@@ -112,19 +112,32 @@
                         <li class="modal-auth__item"><span>Регистрация</span></li>
                     </ul>
 
+                    <form
+                            class="modal-auth__form"
+                            id="auth-form"
+                    >
+
                     <input
                             class="modal-auth__input login"
-                            type="text"
+                            type="email"
+                            id="email"
                             placeholder="Логин"
+                            name=""
                     >
                     <input
                             class="modal-auth__input password"
-                            type="text"
+                            type="password"
+                            id="password"
                             placeholder="Пароль"
+                            name=""
                     >
-                    <div class="modal-auth__button">
-                        <span>Войти</span>
-                    </div>
+
+
+                    <input class="modal-auth__button" type="submit" id="submit" value="Войти">
+
+
+                    </form>
+
                 </div>
             </div>
 
