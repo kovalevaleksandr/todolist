@@ -1,0 +1,633 @@
+@import 'inter.css';
+
+$Primary_text: #464646;
+$Secondary_text: #606060;
+$Text_input: #B4BAC4;
+$Stroke: #DBE0E9;
+$Line: #F0F2F6;
+$Hover: rgba(24, 89, 255, 0.06);
+$Background: #FAFAFA;
+$Background_footer: #F0F0F0;
+$Background_header: #FFFFFF;
+$Primary: #1859FF;
+$Red: #D60103;
+$Green: #52C41A;
+$Yellow: #FAAD14;
+$Blue_stroke: #91D5FF;
+$Red_stroke: #FFCCC7;
+$Green_stroke: #B7EB8F;
+$Yellow_stroke: #FFE58F;
+$Blue_card: #E6F7FF;
+$Red_card: #FFF1F0;
+$Green_card: #F6FFED;
+$Yellow_card: #FFFBE6;
+
+/*nulling*/
+
+*,
+*::before,
+*::after {
+  outline: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  min-width: 320px;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  line-height: 30px;
+  background-color: $Background;
+  font-weight: 400;
+}
+
+li {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+/*common*/
+
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 1040px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/*header*/
+
+.header {
+  padding: 23px 0;
+  margin-bottom: 60px;
+  background-color: $Background_header;
+  box-shadow: inset 0 -1px 0 #F0F0F0;
+
+  & > .container {
+    max-width: 1840px;
+  }
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__auth {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    color: $Primary_text;
+    cursor: pointer;
+  }
+
+  &__link {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    color: $Primary_text;
+  }
+}
+
+/*main*/
+.main {
+  flex: 1 1 auto;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+
+/*notice*/
+
+.notice {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 16px 26px;
+  background-color: $Green_card;
+  border: 1px solid $Green_stroke;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  position: fixed;
+  top: 80px;
+  right: 20px;
+
+  &--active {
+    display: flex;
+  }
+
+  &__button {
+    cursor: pointer;
+  }
+}
+
+.search {
+  cursor: pointer;
+}
+
+.search--active {
+  color: red;
+}
+
+/*filter*/
+
+.filter {
+  display: flex;
+  margin-bottom: 20px;
+
+  @media (max-width: 910px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 1px solid $Stroke;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.016);
+    border-radius: 2px;
+    padding: 2px 8px;
+    margin-right: 20px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+  }
+
+  &__button:hover {
+    border: 1px solid $Primary;
+    color: $Primary;
+  }
+}
+
+
+
+.button--filter-active {
+  border: 1px solid $Primary;
+  color: $Primary;
+}
+
+/*add task*/
+
+.add-task {
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  margin-bottom: 40px;
+}
+
+.add-task__input {
+  flex: 1 1;
+  padding: 8px 12px;
+
+  background-color: #FFFFFF;
+  border: 1px solid $Stroke;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 2px 0 0 2px;
+
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: $Primary_text;
+}
+
+input#input__new-task:focus {
+  border: 1px solid $Primary;
+}
+
+input#input__new-task::placeholder {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  color: $Text_input;
+}
+
+.add-task__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px 8px 22px;
+
+  cursor: pointer;
+  background-color: $Primary;
+
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #FFFFFF;
+}
+
+.todolist__button:hover {
+  background-color: #455;
+}
+
+/*list task*/
+.list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    padding: 20px 16px;
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 10px;
+    background-color: #FFFFFF;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+
+    &:hover {
+      background-color: $Hover;
+      cursor: pointer;
+    }
+  }
+}
+
+
+.todolist__task-new {
+  margin-right: 27px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: $Primary_text;
+  width: 100%;
+}
+
+.button-edit {
+  margin-right: 22px;
+}
+
+.todolist__state {
+  display: none;
+  margin-right: 24px;
+}
+
+.todolist__state + .label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 16px;
+  background-color: #FFFFFF;
+  border-radius: 2px;
+  border: 1px solid #DBE0E9;
+  margin-right: 24px;
+}
+
+.todolist__state:checked + label {
+  background-color: #a3bdff;
+}
+
+.button--edit,
+.button--del {
+  cursor: pointer;
+}
+
+.button--del {
+  color: $Red;
+}
+
+.button--edit {
+  margin-right: 22px;
+}
+
+/*error*/
+
+.error {
+  color: #f00;
+  display: none;
+}
+
+.error--show {
+  display: block;
+}
+
+.state--ready {
+  color: $Primary_text;
+  text-decoration: line-through;
+}
+
+/*footer*/
+
+.footer {
+  padding: 23px 0;
+  background-color: $Background_footer;
+  box-shadow: inset 0 -1px 0 $Background_footer;
+
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__link {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: $Secondary_text;
+  }
+}
+
+.edit--disable {
+  color: $Secondary_text;
+  pointer-events: none;
+}
+
+.remove--disable {
+  color: #ef999a;
+}
+
+/*auth*/
+/*.modal-auth {*/
+/*    display: none;*/
+/*    position: fixed;*/
+/*    z-index: 3;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    bottom: 0;*/
+/*    right: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    overflow: auto;*/
+/*}*/
+
+/*modal*/
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+
+  &__overlay {
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+/*modal-search*/
+
+.modal__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  z-index: 2;
+  padding: 5px;
+  max-width: 300px;
+  width: 100%;
+  position: absolute;
+  top: 5%;
+  right: 20px;
+  background-color: #ffffff;
+}
+
+.modal__close {
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.modal_title {
+  align-self: flex-end;
+  width: 80%;
+  margin-bottom: 15px;
+}
+
+.modal__input {
+  align-self: flex-end;
+  box-shadow: 1px 1px 4px rgb(0 0 0 / 10%);
+  border-radius: 2px 0 0 2px;
+  padding: 4px 6px;
+  border: 1px solid #000000;
+  margin-bottom: 30px;
+  width: 80%;
+}
+
+
+/*modal-edit*/
+.save {
+  color: #B7EB8F;
+}
+
+.modal--active {
+  display: block;
+}
+
+/*modal-auth*/
+.modal-auth {
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+    background-color: #FFFFFF;
+    width: 100%;
+    position: absolute;
+    max-width: 580px;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index: 2;
+  }
+
+  &__title {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 38px;
+    letter-spacing: 0.005em;
+    color: $Primary_text;
+    margin-bottom: 12px;
+  }
+
+  &__desc {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: $Secondary_text;
+    margin-bottom: 34px;
+  }
+
+  &__list {
+    display: flex;
+    cursor: pointer;
+    margin-bottom: 34px;
+    position: relative;
+
+    &:before {
+      content: '';
+      display: block;
+      height: 2px;
+      background-color: $Line;
+      position: absolute;
+      width: 100%;
+      top: 92%;
+      z-index: 1;
+    }
+  }
+
+  &__item {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: $Secondary_text;
+    margin-right: 32.5px;
+    border-bottom: 2px solid transparent;
+    z-index: 2;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 368px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  &__form {
+    display: none;
+  }
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    padding: 8px 160px;
+    background-color: $Primary;
+    border-radius: 2px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
+    cursor: pointer;
+    margin-top: 32px;
+  }
+
+  &__input {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: $Text_input;
+    padding: 8px 12px;
+    max-width: 368px;
+    width: 100%;
+    background-color: #FFFFFF;
+    border: 1px solid #DBE0E9;
+    border-radius: 2px;
+    margin-bottom: 28px;
+  }
+
+  &__overlay {
+  }
+}
+
+.modal-auth--active {
+  display: block;
+}
+
+.auth--active {
+  color: $Primary;
+  border-bottom: 2px solid $Primary;
+}
+
+.modal--act {
+  display: block;
+}
+
+
+
+
+
+
+

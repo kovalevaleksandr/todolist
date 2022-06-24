@@ -1,60 +1,72 @@
-const title_modal = document.querySelector('.modal-search__title')
+import {ITEM_CLASS} from "../common/constants";
+import Item from "./Item";
+
+const item = new Item()
+const modalInput = document.querySelector('.modal__input')
 
 export default class Modal {
-  constructor(id) {
-    this.modalHtml = renderModal(id)
-  }
-
-  renderModal(id) {
-    //html
-    title_modal.innerHTML = this.title
-    const modal = document.createElement('div')
-    modal.id = id
-    modal.classList.add('modal')
-    return document.querySelector(`#${id}`)
+  addToId(id) {
+    document.querySelector('.modal-in').id = id
   }
 
   addToHeader(title) {
-    this.modalHtml.querySelector('.title')
-innerHtml = title
+    document.querySelector('.modal__title').innerHtml = title
   }
 
-  addToContent() {
-
+  addToIdInput(id) {
+    modalInput.id = id
   }
-
-  //в конец боди
-  toggle() {
-
-  }
-
 
 }
 
 
 class Search extends Modal {
 
-  constructor() {
-    super('search');
-    this.addToHeader('<span>Введите строку</span>')
+  getSearchItem() {
+    super.addToId('search')
+    super.addToHeader('<span>\'Введите строку\'</span>')
+    super.addToIdInput('search')
+    document.querySelectorAll(`.${ITEM_CLASS}`).forEach(item => item.remove())
+    const completedArr = item.todolist.filter(item => item.title === modalInput.value)
+    completedArr.forEach(element => item.renderingTask(element))
+    document.querySelector('.search').classList.add('search--active')
   }
-
-  search() {
-
-  }
-
 }
 
-class Edit extends Modal {
+const searchClass = new Search()
 
-  constructor(title, item) {
-    super(title, item);
+const funcInner = debounce(searchClass.getSearchItem, 300)
+
+function debounce(fn, time) {
+  let timeout
+  return function () {
+    clearTimeout(timeout);
+    timeout = setTimeout(fn, time)
   }
-
-  edit()
-
 }
 
-const search = new Search()
-const edit = new Edit()
+const searchItem = document.querySelector('.search')
 
+searchItem.addEventListener('click', () => {
+  document.querySelector('.modal-in').classList.add('modal--act')
+  funcInner()
+})
+
+document.querySelector('.modal__overlay').addEventListener('click', ()=> {
+  document.querySelector('.modal-auth').style.display = "none"
+  // document.querySelector('.modal-in').classList.remove('modal--act')
+})
+
+
+// class Edit extends Modal {
+//
+//   constructor(title, item) {
+//     super(title, item);
+//   }
+//
+//   edit() {
+//
+//   }
+//
+// }
+// const edit = new Edit()

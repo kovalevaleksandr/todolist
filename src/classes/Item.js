@@ -18,7 +18,7 @@ export default class Item {
     renderingTask(elem) {
         const item = document.createElement('div')
         const check = document.createElement('INPUT')
-        const task = document.createElement('input')
+        const task = document.createElement('div')
         const edit = document.createElement('div')
         const del = document.createElement('div')
         const label = document.createElement('label')
@@ -38,18 +38,19 @@ export default class Item {
         label.classList.add('label')
 
 
-        task.setAttribute('readonly', 'readonly')
-        task.setAttribute('value', elem.title)
-        task.setAttribute("readonly", "readonly")
+        // task.setAttribute('readonly', 'readonly')
+        // task.setAttribute('value', elem.title)
+        // task.setAttribute("readonly", "readonly")
         check.setAttribute('type', 'checkbox')
         check.setAttribute('id', elem.id)
         check.checked = elem.completed
         item.setAttribute(ATTRIBUTE_ITEM, elem.id)
         label.setAttribute('for', elem.id)
 
-        label.innerHTML = ''
+        label.innerHTML = '<img src="../assets/images/check.svg" alt="check">'
         edit.innerHTML = 'edit'
         del.innerHTML = 'delete'
+        task.innerHTML = elem.title
 
         LIST.append(item)
         item.append(check, label, task, edit, del )
